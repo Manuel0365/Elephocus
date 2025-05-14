@@ -12,7 +12,7 @@ class FlashcardsDAO:
             doc = jsonable_encoder(flashcard)
             result = self.db.flashcards.insert_one(doc)
             salida.estatus = "OK"
-            salida.mensaje = str(result.inserted_id)
+            salida.mensaje = "Flashcard Creada con éxito"
         except Exception as ex:
             print("Error en agregar flashcard:", ex)
             salida.estatus = "ERROR"
