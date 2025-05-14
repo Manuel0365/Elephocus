@@ -11,7 +11,7 @@ app.include_router(usuarios_router)
 @app.on_event("startup")
 async def startup():
     app.mongo_client = MongoClient("mongodb://localhost:27017")
-    app.db = app.mongo_client['flashcardsdb']
+    app.db = app.mongo_client['Elephocus']
     print("Conectado a MongoDB")
 
 @app.on_event("shutdown")
