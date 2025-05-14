@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request
-from .flashcardsModel import FlashcardInsert, Salida
-from .flashcardsDAO import FlashcardsDAO
+from Model.flashcardModel import FlashcardInsert, Salida
+from dao.flashcardsDAO import FlashcardsDAO
 
 router = APIRouter(
     prefix="/flashcards",

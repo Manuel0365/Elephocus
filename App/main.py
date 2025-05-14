@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from pymongo import MongoClient
-from routers.flashcardsRouter import router as flashcards_router
+from Router.flashcardsRouter import router as flashcards_router
 
 app = FastAPI()
 app.include_router(flashcards_router)

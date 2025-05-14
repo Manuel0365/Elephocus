@@ -1,6 +1,6 @@
 from fastapi.encoders import jsonable_encoder
 from bson import ObjectId
-from .flashcardsModel import FlashcardInsert, Salida
+from Model.flashcardModel import FlashcardInsert, Salida
 
 class FlashcardsDAO:
     def __init__(self, db):
