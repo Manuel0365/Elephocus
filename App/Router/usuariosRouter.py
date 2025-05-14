@@ -1,6 +1,6 @@
 from dao.usuariosDAO import UsuariosDAO
 from fastapi import APIRouter, Request
-from Model.usuariosModel import UsuarioInsert, Salida
+from Model.usuariosModel import UsuarioInsert, Salida, UsuarioUpdate
 
 router = APIRouter(
     prefix="/usuarios",
@@ -13,9 +13,14 @@ async def agregarUsuario(usuario: UsuarioInsert, request: Request) -> Salida:
     usuarioDAO = UsuariosDAO(request.app.db)
     return usuarioDAO.agregarUsuario(usuario)
 
-
 # Eliminar un usuario
 @router.delete("/eliminarUsuario/{idUsuario}", response_model=Salida)
 async def eliminarUsuario(idUsuario: str, request: Request) -> Salida:
     usuarioDAO = UsuariosDAO(request.app.db)
     return usuarioDAO.eliminarUsuario(idUsuario)
+
+# Actualizar un usuario
+@router.put("/actualizarUsuario/{idUsuario}", response_model=Salida)
+async def actualizarUsuario(idUsuario: str, datos: UsuarioUpdate, request: Request) -> Salida:
+    usuarioDAO = UsuariosDAO(request.app.db)
+    return usuarioDAO.actualizarUsuario(idUsuario, datos.dict(exclude_unset=True))
