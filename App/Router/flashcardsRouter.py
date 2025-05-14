@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Request
-from Model.flashcardModel import FlashcardInsert, FlashcardUpdate, Salida, FlashcardResponse
+from Model.flashcardModel import FlashcardInsert, FlashcardUpdate, Salida, FlashcardResponse, Flashcard
 from dao.flashcardsDAO import FlashcardsDAO
 from bson import ObjectId
 
@@ -40,3 +40,8 @@ async def eliminar_flashcard(id_flashcard: str, request: Request):
             raise HTTPException(status_code=404, detail=result['mensaje'])
         raise HTTPException(status_code=500, detail=result['mensaje'])
     return result
+
+@router.get("/", response_model=list[Flashcard])
+async def obtener_todas(request: Request):
+    dao = FlashcardsDAO(request.app.db)
+    return dao.consultaGeneral()
