@@ -5,6 +5,10 @@ class FlashcardInsert(BaseModel):
     pregunta: str
     respuesta: str
 
+class FlashcardUpdate(BaseModel):
+    pregunta: str
+    respuesta: str
+
 class Flashcard(BaseModel):
     _id: str
     id_temario: str
@@ -14,3 +18,9 @@ class Flashcard(BaseModel):
 class Salida(BaseModel):
     estatus: str
     mensaje: str
+
+class FlashcardResponse(BaseModel):
+    mensaje: str
+    _id: str
+    pregunta: str
+    respuesta: str
