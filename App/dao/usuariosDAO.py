@@ -1,4 +1,4 @@
-from Model.usuariosModel import UsuarioInsert, Salida, UsuarioSalida
+from Model.usuariosModel import UsuarioInsert, Salida, UsuarioSalida, UsuarioSelect
 from fastapi.encoders import jsonable_encoder
 from bson import ObjectId
 
@@ -63,6 +63,28 @@ class UsuariosDAO:
             salida.mensaje = "Error al actualizar al usuario"
 
         return salida
+
+    def consultarUsuario(self, idUsuario: str) -> dict:
+            salida = Salida(estatus="", mensaje="")
+            try:
+                if not ObjectId.is_valid(idUsuario):
+                    salida.estatus = "ERROR"
+                    salida.mensaje = "ID inválido"
+                    return salida.dict()
+
+                resultado = self.db.usuariosView.find_one({"_id": ObjectId(idUsuario)})
+                if resultado:
+                    usuario = UsuarioSelect(**resultado)
+                    return usuario.dict()
+                else:
+                    salida.estatus = "ERROR"
+                    salida.mensaje = "No se encontró el usuario"
+            except Exception as ex:
+                print("Error en consultar usuario:", ex)
+                salida.estatus = "ERROR"
+                salida.mensaje = "Error al consultar al usuario"
+            return salida
+
 
     def consultaGeneral(self):
         from Model.usuariosModel import UsuarioSelect

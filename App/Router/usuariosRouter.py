@@ -1,7 +1,7 @@
 from typing import Any
 from dao.usuariosDAO import UsuariosDAO
 from fastapi import APIRouter, Request
-from Model.usuariosModel import UsuarioInsert, Salida, UsuarioUpdate, UsuarioSalida
+from Model.usuariosModel import UsuarioInsert, Salida, UsuarioSelect, UsuarioUpdate, UsuarioSalida
 
 router = APIRouter(
     prefix="/usuarios",
@@ -25,6 +25,12 @@ async def eliminarUsuario(idUsuario: str, request: Request) -> Salida:
 async def actualizarUsuario(idUsuario: str, datos: UsuarioUpdate, request: Request) -> Salida:
     usuarioDAO = UsuariosDAO(request.app.db)
     return usuarioDAO.actualizarUsuario(idUsuario, datos.dict(exclude_unset=True))
+
+# Consultar usuario por su id
+@router.get("/consultarUsuario/{idUsuario}", response_model=UsuarioSelect)
+async def consultarUsuario(idUsuario: str, request: Request) -> UsuarioSelect:
+    usuarioDAO = UsuariosDAO(request.app.db)
+    return usuarioDAO.consultarUsuario(idUsuario)
 
 # Consultar todos los usuarios
 @router.get("/", response_model=UsuarioSalida)

@@ -15,7 +15,6 @@ class UsuarioSelect(BaseModel):
     _id: str
     nombre: str
     correo: str
-    password: str
     edad: int
     nivel_academico: str 
     pais_region: str 
