@@ -1,0 +1,104 @@
+[{
+  "_id": {
+    "$oid": "640000000000000000000001"
+  },
+  "nombre": "Juan Pérez",
+  "correo": "juan.perez@example.com",
+  "password": "password123",
+  "edad": 25,
+  "nivel_academico": "Universidad",
+  "pais_region": "México",
+  "estatus": "activo",
+  "tipo_usuario": "estudiante"
+},
+{
+  "_id": {
+    "$oid": "640000000000000000000002"
+  },
+  "nombre": "María García",
+  "correo": "maria.garcia@example.com",
+  "password": "securepass456",
+  "edad": 30,
+  "nivel_academico": "Posgrado",
+  "pais_region": "Argentina",
+  "estatus": "activo",
+  "tipo_usuario": "profesor"
+},
+{
+  "_id": {
+    "$oid": "640000000000000000000003"
+  },
+  "nombre": "Carlos López",
+  "correo": "carlos.lopez@example.com",
+  "password": "mypass789",
+  "edad": 22,
+  "nivel_academico": "Preparatoria",
+  "pais_region": "Chile",
+  "estatus": "activo",
+  "tipo_usuario": "estudiante"
+},
+{
+  "_id": {
+    "$oid": "640000000000000000000004"
+  },
+  "nombre": "Ana Martínez",
+  "correo": "ana.martinez@example.com",
+  "password": "anapassword",
+  "edad": 28,
+  "nivel_academico": "Universidad",
+  "pais_region": "Colombia",
+  "estatus": "activo",
+  "tipo_usuario": "profesor"
+},
+{
+  "_id": {
+    "$oid": "640000000000000000000005"
+  },
+  "nombre": "Luis González",
+  "correo": "luis.gonzalez@example.com",
+  "password": "luispass123",
+  "edad": 35,
+  "nivel_academico": "Posgrado",
+  "pais_region": "España",
+  "estatus": "activo",
+  "tipo_usuario": "administrador"
+},
+{
+  "_id": {
+    "$oid": "640000000000000000000006"
+  },
+  "nombre": "Sofía Rodríguez",
+  "correo": "sofia.rodriguez@example.com",
+  "password": "sofiapass456",
+  "edad": 27,
+  "nivel_academico": "Universidad",
+  "pais_region": "México",
+  "estatus": "activo",
+  "tipo_usuario": "estudiante"
+},
+{
+  "_id": {
+    "$oid": "640000000000000000000007"
+  },
+  "nombre": "Diego Sánchez",
+  "correo": "diego.sanchez@example.com",
+  "password": "diegopass789",
+  "edad": 24,
+  "nivel_academico": "Secundaria",
+  "pais_region": "Perú",
+  "estatus": "inactivo",
+  "tipo_usuario": "estudiante"
+},
+{
+  "_id": {
+    "$oid": "640000000000000000000008"
+  },
+  "nombre": "Laura Torres",
+  "correo": "laura.torres@example.com",
+  "password": "laurapass101",
+  "edad": 32,
+  "nivel_academico": "Posgrado",
+  "pais_region": "Uruguay",
+  "estatus": "activo",
+  "tipo_usuario": "profesor"
+}]

@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "650000000000000000000001"
+  },
+  "nombre": "Matemáticas",
+  "descripcion": "Conceptos básicos y avanzados de matemáticas."
+},
+{
+  "_id": {
+    "$oid": "650000000000000000000002"
+  },
+  "nombre": "Historia",
+  "descripcion": "Eventos históricos y contextos importantes."
+},
+{
+  "_id": {
+    "$oid": "650000000000000000000003"
+  },
+  "nombre": "Ciencias",
+  "descripcion": "Fundamentos de biología, química y física."
+},
+{
+  "_id": {
+    "$oid": "650000000000000000000004"
+  },
+  "nombre": "Literatura",
+  "descripcion": "Análisis de obras literarias y textos."
+},
+{
+  "_id": {
+    "$oid": "650000000000000000000005"
+  },
+  "nombre": "Geografía",
+  "descripcion": "Conocimientos sobre países, ciudades y territorios."
+},
+{
+  "_id": {
+    "$oid": "650000000000000000000006"
+  },
+  "nombre": "Arte",
+  "descripcion": "Historia del arte y técnicas artísticas."
+},
+{
+  "_id": {
+    "$oid": "650000000000000000000007"
+  },
+  "nombre": "Programación",
+  "descripcion": "Conceptos y lenguajes de programación."
+},
+{
+  "_id": {
+    "$oid": "650000000000000000000008"
+  },
+  "nombre": "Física",
+  "descripcion": "Leyes y principios de la física clásica y moderna."
+}]

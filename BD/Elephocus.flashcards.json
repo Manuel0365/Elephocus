@@ -1,0 +1,128 @@
+[{
+  "_id": {
+    "$oid": "660000000000000000000001"
+  },
+  "pregunta": "¿Cuánto es 2+2?",
+  "respuesta": "4",
+  "id_tema": {
+    "$oid": "650000000000000000000001"
+  },
+  "autor": {
+    "$oid": "640000000000000000000001"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T10:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660000000000000000000002"
+  },
+  "pregunta": "¿Quién fue Simón Bolívar?",
+  "respuesta": "Líder de la independencia en América Latina.",
+  "id_tema": {
+    "$oid": "650000000000000000000002"
+  },
+  "autor": {
+    "$oid": "640000000000000000000002"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T11:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660000000000000000000003"
+  },
+  "pregunta": "¿Qué es la fotosíntesis?",
+  "respuesta": "Proceso mediante el cual las plantas producen energía.",
+  "id_tema": {
+    "$oid": "650000000000000000000003"
+  },
+  "autor": {
+    "$oid": "640000000000000000000003"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T12:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660000000000000000000004"
+  },
+  "pregunta": "¿Quién escribió 'Cien Años de Soledad'?",
+  "respuesta": "Gabriel García Márquez",
+  "id_tema": {
+    "$oid": "650000000000000000000004"
+  },
+  "autor": {
+    "$oid": "640000000000000000000004"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T13:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660000000000000000000005"
+  },
+  "pregunta": "¿Cuál es la capital de España?",
+  "respuesta": "Madrid",
+  "id_tema": {
+    "$oid": "650000000000000000000005"
+  },
+  "autor": {
+    "$oid": "640000000000000000000005"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T14:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660000000000000000000006"
+  },
+  "pregunta": "¿Qué es el cubismo?",
+  "respuesta": "Movimiento artístico del siglo XX.",
+  "id_tema": {
+    "$oid": "650000000000000000000006"
+  },
+  "autor": {
+    "$oid": "640000000000000000000006"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T15:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660000000000000000000007"
+  },
+  "pregunta": "¿Qué es un bucle 'for' en programación?",
+  "respuesta": "Estructura de control para iterar sobre secuencias.",
+  "id_tema": {
+    "$oid": "650000000000000000000007"
+  },
+  "autor": {
+    "$oid": "640000000000000000000007"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T16:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660000000000000000000008"
+  },
+  "pregunta": "¿Qué establece la ley de la gravitación universal?",
+  "respuesta": "La fuerza de atracción entre dos masas es proporcional a sus masas e inversamente proporcional al cuadrado de la distancia.",
+  "id_tema": {
+    "$oid": "650000000000000000000008"
+  },
+  "autor": {
+    "$oid": "640000000000000000000008"
+  },
+  "fecha_creacion": {
+    "$date": "2025-03-14T17:00:00.000Z"
+  }
+}]
