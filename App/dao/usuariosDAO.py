@@ -1,24 +1,24 @@
-from bson import ObjectId
-from fastapi.encoders import jsonable_encoder
 from Model.usuariosModel import UsuarioInsert, Salida
+from fastapi.encoders import jsonable_encoder
+from bson import ObjectId
+
 
 class UsuariosDAO:
     def __init__(self, db):
         self.db = db
 
-    def agregar(self, usuario: UsuarioInsert) -> dict:
+    def agregarUsuario(self, usuario: UsuarioInsert):
         salida = Salida(estatus="", mensaje="")
         try:
-            doc = jsonable_encoder(usuario)
-            result = self.db.flashcards.insert_one(doc)
+            result = self.db.usuarios.insert_one(jsonable_encoder(usuario))
             salida.estatus = "OK"
-            salida.mensaje = "Flashcard Creada con éxito"
+            salida.mensaje = "Usuario agregado con exito con id: " + str(result.inserted_id)
         except Exception as ex:
-            print("Error en agregar flashcard:", ex)
+            print(ex)
             salida.estatus = "ERROR"
-            salida.mensaje = "Error al crear la flashcard"
-        return salida.dict()
-
+            salida.mensaje = "Error al registrar el usuario, consulta al adminstrador."
+        return salida
+    
     def eliminarUsuario(self, idUsuario: str) -> dict:
         salida = Salida(estatus="", mensaje="")
         try: 

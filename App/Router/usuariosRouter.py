@@ -7,12 +7,14 @@ router = APIRouter(
     tags=["Usuarios"]
 )
 
+#Crear un usuario
 @router.post("/crearUsuario", response_model=Salida)
-async def crearUsuario(usuario: UsuarioInsert, request: Request)->Salida:
+async def agregarUsuario(usuario: UsuarioInsert, request: Request) -> Salida:
     usuarioDAO = UsuariosDAO(request.app.db)
     return usuarioDAO.agregarUsuario(usuario)
 
-# Eliminar un usuarios
+
+# Eliminar un usuario
 @router.delete("/eliminarUsuario/{idUsuario}", response_model=Salida)
 async def eliminarUsuario(idUsuario: str, request: Request) -> Salida:
     usuarioDAO = UsuariosDAO(request.app.db)
