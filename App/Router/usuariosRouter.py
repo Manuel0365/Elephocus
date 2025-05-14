@@ -1,14 +1,13 @@
+from dao.usuariosDAO import UsuariosDAO
 from fastapi import APIRouter, Request
-from Model.usuariosModel import Usuario, Salida
-from dao.usuariosDAO import FlashcardsDAO
-from bson import ObjectId
+from Model.usuariosModel import UsuarioInsert, Salida
 
 router = APIRouter(
-    prefix="/flashcards",
-    tags=["Flashcards"]
+    prefix="/usuarios",
+    tags=["Usuarios"]
 )
 
-@router.post("/crear", response_model=Salida)
-async def crear_flashcard(flashcard: FlashcardInsert, request: Request):
-    dao = FlashcardsDAO(request.app.db)
-    return dao.agregar(flashcard)
+@router.post("/crearUsuario", response_model=Salida)
+async def crearUsuario(usuario: UsuarioInsert, request: Request)->Salida:
+    usuarioDAO = UsuariosDAO(request.app.db)
+    return usuarioDAO.agregarUsuario(usuario)
