@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from typing import Optional
+from pydantic import BaseModel, Field
+from typing import Optional, List
 
 class UsuarioInsert(BaseModel):
     nombre: str
@@ -36,3 +36,6 @@ class UsuarioUpdate(BaseModel):
     pais_region: Optional[str] 
     estatus: Optional[str] 
     tipo_usuario: Optional[str] 
+
+class UsuarioSalida(Salida):
+    usuarios: List[UsuarioSelect] = Field(default_factory=list)

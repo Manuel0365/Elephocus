@@ -1,4 +1,4 @@
-from Model.usuariosModel import UsuarioInsert, Salida
+from Model.usuariosModel import UsuarioInsert, Salida, UsuarioSalida
 from fastapi.encoders import jsonable_encoder
 from bson import ObjectId
 
@@ -64,5 +64,19 @@ class UsuariosDAO:
 
         return salida
 
-
-
+    def consultaGeneral(self):
+        from Model.usuariosModel import UsuarioSelect
+        salida = UsuarioSalida(estatus="", mensaje="", usuarios=[])
+        try:
+            lista = list(self.db.usuariosView.find())
+            salida.estatus = "OK"
+            salida.mensaje = "Listado de usuarios"
+            salida.usuarios = [
+                UsuarioSelect(**{**usuario, "_id": str(usuario["_id"])})
+                for usuario in lista
+            ]
+        except Exception as e:
+            salida.estatus = "ERROR"
+            salida.mensaje = f"Error al consultar los usuarios: {str(e)}"
+            salida.usuarios = []
+        return salida
