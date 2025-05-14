@@ -45,3 +45,22 @@ async def eliminar_flashcard(id_flashcard: str, request: Request):
 async def obtener_todas(request: Request):
     dao = FlashcardsDAO(request.app.db)
     return dao.consultaGeneral()
+
+
+@router.get("/{id_flashcard}", response_model=Flashcard | dict)
+async def obtener_por_id(id_flashcard: str, request: Request):
+    try:
+        ObjectId(id_flashcard)
+    except Exception:
+        raise HTTPException(status_code=400, detail="ID de flashcard inválido")
+
+    dao = FlashcardsDAO(request.app.db)
+    resultado = dao.consultaPorId(id_flashcard)
+
+    if mensaje := resultado.get("mensaje"):
+        raise HTTPException(
+            status_code=404 if mensaje == "La flashcard no existe" else 400,
+            detail=mensaje
+        )
+    
+    return resultado
