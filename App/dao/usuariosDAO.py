@@ -2,7 +2,6 @@ from Model.usuariosModel import UsuarioInsert, Salida
 from fastapi.encoders import jsonable_encoder
 from bson import ObjectId
 
-
 class UsuariosDAO:
     def __init__(self, db):
         self.db = db
@@ -35,4 +34,35 @@ class UsuariosDAO:
             salida.estatus = "ERROR"
             salida.mensaje = "Error al eliminar al usuario"
         return salida
+    
+    def actualizarUsuario(self, idUsuario: str, datos: dict) -> dict:
+        salida = Salida(estatus="", mensaje="")
+        try:
+            if not ObjectId.is_valid(idUsuario):
+                salida.estatus = "ERROR"
+                salida.mensaje = "ID inválido"
+                return salida.dict()
+
+            resultado = self.db.usuarios.update_one(
+                {"_id": ObjectId(idUsuario)},
+                {"$set": datos}
+            )
+
+            if resultado.modified_count > 0:
+                salida.estatus = "OK"
+                salida.mensaje = "Usuario actualizado"
+            elif resultado.matched_count > 0:
+                salida.estatus = "OK"
+                salida.mensaje = "Usuario ya estaba con esos datos"
+            else:
+                salida.estatus = "ERROR"
+                salida.mensaje = "No se encontró el usuario"
+        except Exception as ex:
+            print("Error en actualizar usuario:", ex)
+            salida.estatus = "ERROR"
+            salida.mensaje = "Error al actualizar al usuario"
+
+        return salida
+
+
 
