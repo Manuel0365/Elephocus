@@ -11,6 +11,17 @@ class UsuarioInsert(BaseModel):
     estatus: str
     tipo_usuario: str
 
+class UsuarioSelect(BaseModel):
+    _id: str
+    nombre: str
+    correo: str
+    password: str
+    edad: int
+    nivel_academico: str 
+    pais_region: str 
+    estatus: str 
+    tipo_usuario: str
+
 class Salida(BaseModel):
     estatus: str
     mensaje: str
