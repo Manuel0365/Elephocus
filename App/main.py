@@ -3,10 +3,12 @@ from fastapi import FastAPI
 from pymongo import MongoClient
 from Router.flashcardsRouter import router as flashcards_router
 from Router.usuariosRouter import router as usuarios_router
+from Router.temariosRouter import router as temarios_router
 
 app = FastAPI()
 app.include_router(flashcards_router)
 app.include_router(usuarios_router)
+app.include_router(temarios_router)
 
 @app.on_event("startup")
 async def startup():
