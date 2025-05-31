@@ -1,4 +1,4 @@
-# Modificar
+from typing import Optional, List
 from pydantic import BaseModel
 
 class TemarioInsert(BaseModel):
@@ -8,3 +8,7 @@ class TemarioInsert(BaseModel):
 class Salida(BaseModel):
     estatus: str
     mensaje: str
+
+class TemarioUpdate(BaseModel):
+    nombre: Optional[str]
+    descripcion: Optional[str]

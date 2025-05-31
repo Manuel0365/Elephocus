@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request
 from dao.temariosDAO import TemariosDAO
-from Model.temariosModel import TemarioInsert, Salida
+from Model.temariosModel import TemarioInsert, Salida, TemarioUpdate
 
 router = APIRouter(
     prefix="/temarios",
@@ -12,3 +12,15 @@ router = APIRouter(
 async def agregarTemario(temario: TemarioInsert, request: Request) -> Salida:
     temarioDao = TemariosDAO(request.app.db)
     return temarioDao.agregarTemario(temario)
+
+# Eliminar un temario
+@router.delete("/eliminarTemario/{idTemario}", response_model=Salida)
+async def eliminarTemario(idTemario: str, request: Request) -> Salida:
+    temarioDao = TemariosDAO(request.app.db)
+    return temarioDao.eliminarTemario(idTemario)
+
+# Actualizar un temario
+@router.put("/actualizarTemario/{idTemario}", response_model=Salida)
+async def actualizarTemario(idTemario: str, datos: TemarioUpdate, request: Request) -> Salida:
+    temarioDao = TemariosDAO(request.app.db)
+    return temarioDao.actualizarTemario(idTemario, datos.dict(exclude_unset=True))
