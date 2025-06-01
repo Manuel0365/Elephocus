@@ -1,7 +1,12 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List
 
+class Login(BaseModel):
+    correo: str
+    password: str
+
 class UsuarioInsert(BaseModel):
+    idUsuario: int = Field(alias="_id")
     nombre: str
     correo: str
     password: str
@@ -37,4 +42,4 @@ class UsuarioUpdate(BaseModel):
     tipo_usuario: Optional[str] 
 
 class UsuarioSalida(Salida):
-    usuarios: List[UsuarioSelect] = Field(default_factory=list)
+    usuarios: Optional[List[UsuarioSelect]] = None

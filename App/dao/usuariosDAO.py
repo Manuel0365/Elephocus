@@ -102,3 +102,25 @@ class UsuariosDAO:
             salida.mensaje = f"Error al consultar los usuarios: {str(e)}"
             salida.usuarios = []
         return salida
+    
+    def autenticar(self, correo, password):
+        respuesta = UsuarioSalida(estatus="", mensaje="", usuarios=None)
+        try:
+            usuarios = self.db.usuarios.find_one(
+                {"correo": correo, "password": password, "estatus": "A"},
+                projection={"tarjetas": False}
+            )
+            if usuarios:
+                usuarios["_id"] = str(usuarios["_id"])  
+                usuario_data = UsuarioSelect(**usuarios)
+                respuesta.estatus = "OK"
+                respuesta.mensaje = "Usuario autenticado con éxito"
+                respuesta.usuarios = usuario_data
+            else:
+                respuesta.estatus = "ERROR"
+                respuesta.mensaje = "Datos incorrectos"
+        except Exception as ex:
+            print("Error en autenticar:", ex)
+            respuesta.estatus = "ERROR"
+            respuesta.mensaje = "Error interno al autenticar el usuario, consulta al administrador"
+        return respuesta
