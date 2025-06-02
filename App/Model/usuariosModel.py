@@ -6,7 +6,6 @@ class Login(BaseModel):
     password: str
 
 class UsuarioInsert(BaseModel):
-    idUsuario: int = Field(alias="_id")
     nombre: str
     correo: str
     password: str
