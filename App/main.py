@@ -5,6 +5,7 @@ from Router.flashcardsRouter import router as flashcards_router
 from Router.usuariosRouter import router as usuarios_router
 from Router.temariosRouter import router as temarios_router
 from contextlib import asynccontextmanager
+from Router.eventosRouter import router as eventos_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,6 +20,7 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(flashcards_router)
 app.include_router(usuarios_router)
 app.include_router(temarios_router)
+app.include_router(eventos_router)
 
 @app.get("/")
 async def root():
