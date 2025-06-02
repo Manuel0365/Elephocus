@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic import BaseModel
 
 class FlashcardInsert(BaseModel):
@@ -10,10 +11,11 @@ class FlashcardUpdate(BaseModel):
     respuesta: str
 
 class Flashcard(BaseModel):
-    _id: str
-    id_temario: str
     pregunta: str
     respuesta: str
+    id_tema: str
+    autor: str
+    fecha_creacion: datetime
 
 class Salida(BaseModel):
     estatus: str
