@@ -99,25 +99,34 @@ async def eliminar_flashcard(
     return result_delete
 
 
-@router.get("/", response_model=list[Flashcard])  
-async def obtener_todas(request: Request):
-    dao = FlashcardsDAO(request.app.db)  
-    return dao.consultaGeneral()  
+@router.get("/", response_model=list[Flashcard])
+async def obtener_todas(
+        request: Request,
+        current_user: UsuarioSelect = Depends(get_current_user)  # Requiere autenticación
+):
+    if current_user.tipo_usuario != "Admin":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Solo el administrador puede consultar todas las flashcards.")
+    dao = FlashcardsDAO(request.app.db)
+    return dao.consultaGeneral()
 
 
-@router.get("/{id_flashcard}", response_model=Flashcard)  
-async def obtener_por_id(id_flashcard: str, request: Request):  
+@router.get("/{id_flashcard}", response_model=Flashcard)
+async def obtener_por_id(
+        id_flashcard: str,
+        request: Request,
+        current_user: UsuarioSelect = Depends(get_current_user)  # Requiere autenticación
+):
     try:
-        ObjectId(id_flashcard)  
+        ObjectId(id_flashcard)
     except Exception:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="ID de flashcard inválido")  
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="ID de flashcard inválido")
 
-    dao = FlashcardsDAO(request.app.db)  
-    resultado = dao.consultaPorId(id_flashcard)  
+    dao = FlashcardsDAO(request.app.db)
+    resultado = dao.consultaPorId(id_flashcard)
 
-    if isinstance(resultado, dict) and (mensaje := resultado.get("mensaje")):  
-        status_code = status.HTTP_404_NOT_FOUND if "no existe" in mensaje.lower() else status.HTTP_400_BAD_REQUEST  
-        raise HTTPException(status_code=status_code, detail=mensaje)  
+    if isinstance(resultado, dict) and (mensaje := resultado.get("mensaje")):
+        status_code = status.HTTP_404_NOT_FOUND if "no existe" in mensaje.lower() else status.HTTP_400_BAD_REQUEST
+        raise HTTPException(status_code=status_code, detail=mensaje)
 
     if not isinstance(resultado, Flashcard):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Error al obtener la flashcard.")
