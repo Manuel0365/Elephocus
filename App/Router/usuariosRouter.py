@@ -30,8 +30,7 @@ async def validarUsuario(request:Request, credenciales: HTTPBasicCredentials=Dep
 @router.post("/crearUsuario", response_model=Salida)
 async def agregarUsuario(
     usuario: UsuarioInsert,
-    request: Request,
-    current_user: UsuarioSelect = Depends(require_roles("Admin"))
+    request: Request
 ) -> Salida:
     usuarioDAO = UsuariosDAO(request.app.db)
     return usuarioDAO.agregarUsuario(usuario)
