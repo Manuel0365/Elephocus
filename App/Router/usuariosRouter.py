@@ -27,7 +27,7 @@ async def validarUsuario(request:Request, credenciales: HTTPBasicCredentials=Dep
     return usuarioDAO.autenticar(credenciales.username, credenciales.password)
 
 #Crear un usuario
-@router.post("/crearUsuario", response_model=Salida)
+@router.post("/", response_model=Salida)
 async def agregarUsuario(
     usuario: UsuarioInsert,
     request: Request

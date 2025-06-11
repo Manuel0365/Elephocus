@@ -9,13 +9,34 @@ class UsuariosDAO:
     def agregarUsuario(self, usuario: UsuarioInsert):
         salida = Salida(estatus="", mensaje="")
         try:
+            # Validar que la edad sea mayor o igual a 8
+            if usuario.edad < 8:
+                salida.estatus = "ERROR"
+                salida.mensaje = "La edad debe ser mayor o igual a 8 años."
+                return salida
+
+            # Validar que el nivel_academico sea válido
+            niveles_validos = ["Primaria", "Secundaria", "Preparatoria", "Universidad", "Libre"]
+            if usuario.nivel_academico not in niveles_validos:
+                salida.estatus = "ERROR"
+                salida.mensaje = f"El nivel académico debe ser uno de los siguientes: {', '.join(niveles_validos)}."
+                return salida
+
+            # Verificar si el correo ya existe
+            correo_existente = self.db.usuarios.find_one({"correo": usuario.correo})
+            if correo_existente:
+                salida.estatus = "ERROR"
+                salida.mensaje = "El correo ya está registrado. Por favor, usa otro correo."
+                return salida
+
+            # Insertar el usuario si las validaciones son correctas
             result = self.db.usuarios.insert_one(jsonable_encoder(usuario))
             salida.estatus = "OK"
-            salida.mensaje = "Usuario agregado con exito con id: " + str(result.inserted_id)
+            salida.mensaje = "Usuario agregado con éxito con id: " + str(result.inserted_id)
         except Exception as ex:
             print(ex)
             salida.estatus = "ERROR"
-            salida.mensaje = "Error al registrar el usuario, consulta al adminstrador."
+            salida.mensaje = "Error al registrar el usuario, consulta al administrador."
         return salida
     
     def eliminarUsuario(self, idUsuario: str) -> dict:
