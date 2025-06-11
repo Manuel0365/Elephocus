@@ -46,7 +46,7 @@ async def eliminarUsuario(
     return usuarioDAO.eliminarUsuario(idUsuario)
 
 # Actualizar un usuario
-@router.put("/actualizarUsuario/{idUsuario}", response_model=Salida)
+@router.patch("/actualizarUsuario/{idUsuario}", response_model=Salida)
 async def actualizarUsuario(
     idUsuario: str,
     datos: UsuarioUpdate,
@@ -57,7 +57,11 @@ async def actualizarUsuario(
         raise HTTPException(status_code=403, detail="No puedes modificar otro usuario")
 
     usuarioDAO = UsuariosDAO(request.app.db)
-    return usuarioDAO.actualizarUsuario(idUsuario, datos.dict(exclude_unset=True))
+    datos_limpios = {
+        k: v for k, v in datos.dict(exclude_unset=True).items()
+        if v not in ["string", "", 0, None]
+    }
+    return usuarioDAO.actualizarUsuario(idUsuario, datos_limpios)
 
 
 # Consultar usuario por su id
